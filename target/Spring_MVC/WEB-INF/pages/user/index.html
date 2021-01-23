@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>All users</title>
+</head>
+<body>
+<a>Test for test</a>
+<div th:each="users : ${user}">
+    <!--/*@thymesVar id="getName" type=""*/-->
+    <a th:href="@{/users/{id}(id =${users.getId()})}"
+       th:text="${users.getName() + '  ' + users.getAge()}" >users</a>
+</div>
+<br/>
+<hr/>
+<a href="/users/new">Create new person</a>
+
+</body>
+</html>
