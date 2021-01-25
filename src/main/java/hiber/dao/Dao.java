@@ -10,4 +10,6 @@ public interface Dao {
     public User save(User user);
     public User update(int id, User user);
     public void delete(int id);
+    public User getFromEmail(String email);
+    public User getFromName(String name);
 }

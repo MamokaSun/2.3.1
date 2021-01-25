@@ -1,15 +1,17 @@
 package hiber.service;
 
 import hiber.dao.Dao;
-import hiber.dao.DaoImp;
 import hiber.model.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-public class UserServiceImp implements UserService{
+public class UserServiceImp implements UserService, UserDetailsService {
 
     private final Dao userDao;
 
@@ -45,5 +47,24 @@ public class UserServiceImp implements UserService{
     @Override
     public void delete(int id) {
         userDao.delete(id);
+    }
+
+    @Transactional
+    @Override
+    public User getFromEmail(String email) {
+        return userDao.getFromEmail(email);
+    }
+
+    @Transactional
+    @Override
+    public User getFromName(String name) {
+        return userDao.getFromName(name);
+    }
+
+    @Transactional
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        User user = userDao.getFromName(s);
+        return user;
     }
 }

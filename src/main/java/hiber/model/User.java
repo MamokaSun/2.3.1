@@ -1,10 +1,15 @@
 package hiber.model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Set;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "User")
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
@@ -13,18 +18,37 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "age")
-    private byte age;
+    @Column(name = "pass")
+    private String password;
 
-    public User(int id,String name, byte age) {
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "age")
+    private int age;
+
+    @Transient
+    private String passwordConfirm;
+
+    @ManyToMany(fetch = FetchType.EAGER) // узнать что такое fetch = FetchType.EAGER
+    private Set<Role> roles;
+
+    public User(int id,String name, String password, String email){
         this.id = id;
+        this.password= password;
+        this.name = name;
+        this.email = email;
+    }
+    public User(int id, String name, int age, String password, String email, Set<Role> role) {
+        this.email = email;
         this.age = age;
+        this.roles = role;
+        this.id = id;
+        this.password= password;
         this.name = name;
     }
 
-    public User() {
-        
-    }
+    public User() { }
 
     public String getName() {
         return name;
@@ -34,19 +58,80 @@ public class User {
         this.name = name;
     }
 
-    public byte getAge() {
-        return age;
-    }
-
-    public void setAge(byte age) {
-        this.age = age;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setPassword(String password) { this.password = password; }
+
+    public  Set<Role> getRole(){
+        return roles;
+    }
+
+    public void setRole(Set<Role> role){
+        this.roles = role;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRole();
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return name;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

@@ -3,8 +3,10 @@
 /Users/alexa.rybin/IdeaProjects/CrudApp/src/main/java/hiber/dao/Dao.java
 /Users/alexa.rybin/IdeaProjects/CrudApp/src/main/java/hiber/model/User.java
 /Users/alexa.rybin/IdeaProjects/CrudApp/src/main/java/hiber/config/AppInit.java
-/Users/alexa.rybin/IdeaProjects/CrudApp/src/main/java/hiber/Main.java
 /Users/alexa.rybin/IdeaProjects/CrudApp/src/main/java/hiber/service/UserServiceImp.java
 /Users/alexa.rybin/IdeaProjects/CrudApp/src/main/java/hiber/config/controller/UserController.java
+/Users/alexa.rybin/IdeaProjects/CrudApp/src/main/java/hiber/security/SuccessUserHandler.java
 /Users/alexa.rybin/IdeaProjects/CrudApp/src/main/java/hiber/service/UserService.java
+/Users/alexa.rybin/IdeaProjects/CrudApp/src/main/java/hiber/security/SecurityInitializer.java
+/Users/alexa.rybin/IdeaProjects/CrudApp/src/main/java/hiber/security/SecurityConfig.java
 /Users/alexa.rybin/IdeaProjects/CrudApp/src/main/java/hiber/config/WebConfig.java
