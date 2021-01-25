@@ -1,6 +1,7 @@
 package hiber.service;
 
 import hiber.dao.Dao;
+import hiber.model.Role;
 import hiber.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -8,7 +9,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImp implements UserService, UserDetailsService {
@@ -40,6 +43,10 @@ public class UserServiceImp implements UserService, UserDetailsService {
     @Transactional
     @Override
     public User update(int id, User user) {
+
+        User saveParam = userDao.show(id);
+        user.setRole(saveParam.getRole());
+        user.setPassword(saveParam.getPassword());
         return userDao.update(id,user);
     }
 

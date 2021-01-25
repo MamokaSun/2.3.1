@@ -6,12 +6,23 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/users}" th:object="${user}">
+<form th:method="POST" th:action="@{/admin}" th:object="${user}">
     <label for="name">Enter name</label>
     <input type="text" th:field="*{name}" id="name" />
 
     <label for="age">Enter age</label>
     <input type="number" th:field="*{age}" id="age" />
+
+    <label for="password">Enter password</label>
+    <input for="text" th:field="*{password}" id="password" />
+
+    <label for="email">Enter password</label>
+    <input for="text" th:field="*{email}" id="email" />
+    <script>
+        
+    </script>
+
+
     <br/>
 
     <input type="submit" value="Create!">

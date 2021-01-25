@@ -1,5 +1,6 @@
 package hiber.config.controller;
 
+import hiber.model.Role;
 import hiber.model.User;
 import hiber.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,8 @@ public class AdminController {
     }
 
     @GetMapping("/new")
-    public String newUser(ModelMap model){
+    public String newUser(ModelMap model, ModelMap modelRole){
+        modelRole.addAttribute("role", new Role());
         model.addAttribute("user", new User());
         return "/admin/new";
     }

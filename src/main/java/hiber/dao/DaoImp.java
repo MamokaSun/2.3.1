@@ -36,6 +36,7 @@ public class DaoImp implements Dao{
 
     @Override
     public User update(int id, User user) {
+
         return entityManager.merge(user);
     }
 
@@ -67,6 +68,11 @@ public class DaoImp implements Dao{
         User user1 = entityManager.createQuery("FROM User where name=:name", User.class).
                 setParameter("name", name).getSingleResult();
         return user1;
+    }
+
+    @Override
+    public Role getRoleFromId(int id) {
+        return entityManager.find(Role.class, id);
     }
 
 
