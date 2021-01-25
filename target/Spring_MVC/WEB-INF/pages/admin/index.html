@@ -9,12 +9,15 @@
 
 <div th:each="users : ${users}">
     <!--/*@thymesVar id="getName" type=""*/-->
-    <a th:href="@{/users/{id}(id =${users.getId()})}"
-       th:text="${users.getName() + '  ' + users.getAge()}" >users</a>
+    <a th:href="@{/admin/{id}(id =${users.getId()})}"
+       th:text="${users.getName() + '  '
+                + users.getAge() + '  '
+                + users.getEmail() + '  '
+                + users.getRole() }" >users</a>
 </div>
 <br/>
 <hr/>
-<a href="/users/new">Create new person</a>
+<a href="/admin/new">Create new person</a>
 
 </body>
 </html>
