@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //завтра начать от сюда
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
 //        http.formLogin()
 //                // указываем страницу с формой логина
 //                .loginPage("/login")
@@ -66,12 +67,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // делаем страницу регистрации недоступной для авторизированных пользователей
                 .authorizeRequests()
                 //страницы аутентификаци доступна всем
-                .antMatchers("/").anonymous()
+                .antMatchers("/login").anonymous()
                 // защищенные URL
-                .antMatchers("/users").access("hasAnyRole('ROLE_ADMIN')")
+                .antMatchers("/admin/**").access("hasAnyRole('ROLE_ADMIN')")
+                .antMatchers("/user/**").access("hasAnyRole('ROLE_USER')")
+
 //                .anyRequest().authenticated();
                 .and().formLogin()
-                .successHandler(successUserHandler);
+                .successHandler(successUserHandler)
+                .and().logout()
+                .permitAll()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login");
     }
 
     @Bean

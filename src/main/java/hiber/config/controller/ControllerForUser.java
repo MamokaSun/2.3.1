@@ -18,14 +18,11 @@ public class ControllerForUser {
     public ControllerForUser(UserService userService) {
         this.userService = userService;
     }
-    @GetMapping
-    public String index(ModelMap model) {
-        model.addAttribute("user", userService.index());
+
+
+    @GetMapping("/{id}")
+    public String show(@PathVariable("id") int id, ModelMap model){
+        model.addAttribute("user", userService.show(id));
         return "/user/index";
     }
-//    @GetMapping("/{id}")
-//    public String show(@PathVariable("id") int id, ModelMap model){
-//        model.addAttribute("user", userService.show(id));
-//        return "user/show";
-//    }
 }
