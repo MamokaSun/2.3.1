@@ -15,6 +15,13 @@
     <label for="email">Enter email</label>
     <input type="text" th:field="*{email}" id="email" />
 
+    <label for="password">Enter password</label>
+    <input type="text" th:field="*{password}" id="password" />
+
+    <li th:each="role : ${roleList}">
+        <input type="checkbox" name="setRoles" th:value="${role}"
+               th:text="${role}" />
+    </li>
     <br/>
 
     <input type="submit" value="Update">

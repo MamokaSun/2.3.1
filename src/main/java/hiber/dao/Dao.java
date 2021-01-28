@@ -15,4 +15,5 @@ public interface Dao {
     public User getFromEmail(String email);
     public User getFromName(String name);
     public Role getRoleFromId(int id);
+
 }

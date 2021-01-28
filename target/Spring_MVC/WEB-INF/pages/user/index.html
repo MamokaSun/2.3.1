@@ -3,18 +3,18 @@
 <html >
 <head>
     <meta charset="UTF-8">
-    <title>All users</title>
+    <title th:text="${user.name}"></title>
 </head>
 <body>
-<a>Test for test</a>
-<div th:each="users : ${user}">
-    <!--/*@thymesVar id="getName" type=""*/-->
-    <a th:href="@{/users/{id}(id =${users.getId()})}"
-       th:text="${users.getName() + '  ' + users.getAge()}" >users</a>
-</div>
+<a>Hi!</a>
+<p th:text="${'id: '+user.id}"></p>
+<p th:text="${'Name: '+user.name}"></p>
+<p th:text="${'Email: ' + user.email}"></p>
+<p th:text="${'Role: ' +user.role}"></p>
 <br/>
 <hr/>
-<a href="/users/new">Create new person</a>
-
+<p>
+    <a th:href="@{/logout}">Logout</a>
+</p>
 </body>
 </html>
